@@ -1,0 +1,10 @@
+**/bin/
+**/obj/
+App/
+dist/
+TestResults/
+.vs/
+*.user
+*.suo
+*.pdb
+*.tmp
