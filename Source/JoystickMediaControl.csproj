@@ -6,7 +6,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AssemblyName>JoystickMediaControl</AssemblyName>
-    <Version>1.3.1</Version>
+    <Version>1.3.2</Version>
     <Company>Bartek16194</Company>
     <Authors>Bartek16194</Authors>
     <Description>Joystick and throttle media controls</Description>

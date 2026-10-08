@@ -2,7 +2,7 @@
 
 Lightweight Windows application that maps joystick and throttle buttons to media controls and TeamSpeak 3 hotkeys.
 
-**[Download the Windows installer](https://github.com/Bartek16194/JoystickMediaControl/releases/latest/download/JoystickMediaControl-Setup-1.3.1.exe)** · **[All releases](https://github.com/Bartek16194/JoystickMediaControl/releases)**
+**[Download the Windows installer](https://github.com/Bartek16194/JoystickMediaControl/releases/latest/download/JoystickMediaControl-Setup-1.3.2.exe)** · **[All releases](https://github.com/Bartek16194/JoystickMediaControl/releases)**
 
 Author: [Bartek16194](https://github.com/Bartek16194) · Community: [Discord](https://discord.gg/WbChuSCGHQ)
 
@@ -47,4 +47,4 @@ Requirements: .NET SDK 7 and NSIS 3.13 for the installer. The project uses C# Wi
 
 The app is written to `App/`, verification results to `TestResults/`, and the installer to `dist/`. Build products and personal settings are excluded from the repository.
 
-The v1.3.1 build passed 71 checks covering input press/release, manual bindings, profiles, PTT key handling, setup confirmation and synthetic HID reports. Installer extraction and uninstall cleanup were checked in an isolated directory without writing installation registry entries or shortcuts. Full TS3/Spotify behavior and normal installer integration still need a live check.
+The v1.3.2 build passed 94 checks covering input press/release, manual bindings, profiles, PTT key handling, setup confirmation and synthetic HID reports. Installer extraction and uninstall cleanup were checked in an isolated directory without writing installation registry entries or shortcuts. The media scan-code regression checks do not emit live keys. FaceTrackNoIR compatibility requires user verification. Full TS3/Spotify behavior and normal installer integration still need a live check.

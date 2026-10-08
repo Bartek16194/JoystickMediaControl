@@ -71,8 +71,19 @@ internal static class Media
             }, IntPtr.Zero);
             return sent ? $"Sent: {action}" : "Spotify did not acknowledge the command. Try Play / Pause.";
         }
-        ushort key = action switch { "Play / Pause" => 0xB3, "Next track" => 0xB0, "Previous track" => 0xB1, "Stop" => 0xB2, "Volume up" => 0xAF, "Volume down" => 0xAE, "Mute" => 0xAD, _ => throw new ArgumentException("Unknown action.") };
-        var inputs = new[] { new Native.Input { Type = 1, Key = key }, new Native.Input { Type = 1, Key = key, Flags = 2 } };
+        var inputs = KeyInputs(action);
         return Native.SendInput(2, inputs, 40) == 2 ? $"Sent: {action}" : "Windows blocked the media command.";
+    }
+    internal static Native.Input[] KeyInputs(string action)
+    {
+        ushort key = action switch { "Play / Pause" => 0xB3, "Next track" => 0xB0, "Previous track" => 0xB1, "Stop" => 0xB2, "Volume up" => 0xAF, "Volume down" => 0xAE, "Mute" => 0xAD, _ => throw new ArgumentException("Unknown action.") };
+        uint scan = Native.MapVirtualKey(key, 4); // MAPVK_VK_TO_VSC_EX preserves the E0 prefix.
+        if ((scan & 0xFF) == 0) throw new InvalidOperationException("Windows could not map the media key.");
+        uint flags = 0x8 | ((scan & 0xFF00) == 0xE000 ? 0x1u : 0u);
+        // Send the physical scan code, including its extended flag, to keyboard listeners.
+        return new[] {
+            new Native.Input { Type = 1, Scan = (ushort)(scan & 0xFF), Flags = flags },
+            new Native.Input { Type = 1, Scan = (ushort)(scan & 0xFF), Flags = flags | 0x2 }
+        };
     }
 }

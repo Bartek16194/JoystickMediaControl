@@ -4,9 +4,9 @@ Lightweight Windows utility for assigning joystick and throttle buttons to media
 
 Author: [Bartek16194 on GitHub](https://github.com/Bartek16194). Community: [Discord](https://discord.gg/WbChuSCGHQ).
 
-## Installer (1.3.1)
+## Installer (1.3.2)
 
-Run `JoystickMediaControl-Setup-1.3.1.exe`. The default installation folder is `%LOCALAPPDATA%\Programs\JoystickMediaControl`; you can change it. Installation is per user and does not request administrator access.
+Run `JoystickMediaControl-Setup-1.3.2.exe`. The default installation folder is `%LOCALAPPDATA%\Programs\JoystickMediaControl`; you can change it. Installation is per user and does not request administrator access.
 
 The installer creates a Start Menu folder with application, uninstall, GitHub and Discord shortcuts. Desktop shortcut and Windows startup are optional. The app appears in Windows Installed apps and can be removed there or through its uninstaller. Existing settings are preserved, including after uninstalling.
 

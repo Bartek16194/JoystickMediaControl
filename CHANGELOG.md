@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.2
+
+- Send global media commands with physical scan codes and extended-key flags to address interference with keyboard listeners such as FaceTrackNoIR.
+- Preserve support for all media players; existing bindings and profiles remain compatible.
+- Add regression checks for all seven global media keys without emitting live keyboard input.
+
 ## 1.3.1
 
 - Add an automatic setup guide when selecting, assigning or testing an unconfigured TeamSpeak 3 action.

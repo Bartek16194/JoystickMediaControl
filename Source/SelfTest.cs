@@ -16,6 +16,14 @@ internal static class SelfTest
         Check(e.Update(2, 0, new ushort[] { 128 }).Single().Usage == 128, "More than 32 buttons");
         Check(!e.Update(1, 0, new ushort[] { 2 }).Any(), "Other report does not reset held button");
         Check(Marshal.SizeOf<Native.Input>() == 40 && Marshal.SizeOf<Native.Registration>() == 16 && Marshal.SizeOf<Native.DeviceEntry>() == 16, "x64 native ABI");
+        Check(Marshal.OffsetOf<Native.Input>(nameof(Native.Input.Scan)).ToInt32() == 10, "Native keyboard scan code offset");
+        foreach (var (action, key) in new[] { ("Next track", 0xB0u), ("Previous track", 0xB1u), ("Stop", 0xB2u), ("Play / Pause", 0xB3u), ("Volume up", 0xAFu), ("Volume down", 0xAEu), ("Mute", 0xADu) }) {
+            var inputs = Media.KeyInputs(action);
+            Check(inputs.Length == 2 && inputs.All(x => x.Type == 1 && x.Scan != 0 && x.Key == 0), action + " uses physical scan codes");
+            Check(inputs[0].Flags == 9 && inputs[1].Flags == 11 && inputs[0].Scan == inputs[1].Scan, action + " extended press/release pair");
+            Check(Native.MapVirtualKey((uint)inputs[0].Scan | 0xE000, 3) == key, action + " scan code maps to intended media key");
+        }
+        Check(Media.KeyInputs("Next track")[0].Scan == 0x19, "Next track is E0 19, not an empty or End key scan code");
         var virtualController = new Controller { Path = "test-controller", Name = "Test controller" };
         virtualController.Groups.Add((1, 0, new HashSet<ushort> { 1, 128 }));
         virtualController.Groups.Add((2, 3, new HashSet<ushort> { 1 }));

@@ -6,7 +6,7 @@ Unicode true
 !include "x64.nsh"
 
 !define PRODUCT "JoystickMediaControl"
-!define VERSION "1.3.1"
+!define VERSION "1.3.2"
 !define GITHUB "https://github.com/Bartek16194"
 !define DISCORD "https://discord.gg/WbChuSCGHQ"
 !define UNINSTALL_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\JoystickMediaControl"
@@ -19,7 +19,7 @@ SetCompressor /SOLID lzma
 ShowInstDetails show
 ShowUninstDetails show
 BrandingText "${PRODUCT} ${VERSION} | Bartek16194"
-VIProductVersion "1.3.1.0"
+VIProductVersion "1.3.2.0"
 VIAddVersionKey /LANG=1033 "ProductName" "${PRODUCT}"
 VIAddVersionKey /LANG=1033 "ProductVersion" "${VERSION}"
 VIAddVersionKey /LANG=1033 "FileVersion" "${VERSION}"
